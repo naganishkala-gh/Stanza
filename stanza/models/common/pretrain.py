@@ -53,7 +53,7 @@ class Pretrain:
     def load(self):
         if self.filename is not None and os.path.exists(self.filename):
             try:
-                data = torch.load(self.filename, lambda storage, loc: storage)
+                data = torch.load(self.filename, lambda storage, loc: storage, weights_only=False)
                 logger.debug("Loaded pretrain from {}".format(self.filename))
                 if 'emb' not in data or 'vocab' not in data:
                     raise RuntimeError("File {} exists but is not a stanza pretrain file".format(self.filename))
